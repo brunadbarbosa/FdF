@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0-main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmaria- <brmaria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brmaria- <brmaria-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:29:54 by brmaria-          #+#    #+#             */
-/*   Updated: 2025/07/24 15:19:46 by brmaria-         ###   ########.fr       */
+/*   Updated: 2025/07/28 10:58:52 by brmaria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,81 +23,6 @@ void free_split(char **tokens)
 		i++;
 	}
 	free(tokens);
-}
-
-t_point **fill_points(char **lines, int height, int width)
-{
-	t_point **points;
-	char **tokens;
-	int y, x;
-
-	points = malloc(sizeof(t_point *) * height);
-	if (!points)
-		return (NULL);
-
-	y = 0;
-	while (y < height)
-	{
-		points[y] = malloc(sizeof(t_point) * width);
-		if (!points[y])
-		{
-			while (--y >= 0)
-				free(points[y]);
-			free(points);
-			return (NULL);
-		}
-		tokens = ft_split(lines[y], ' ');
-		if (!tokens)
-			return (NULL);
-		x = 0;
-		while (x < width)
-		{
-			points[y][x].x = x;
-			points[y][x].y = y;
-			points[y][x].z = ft_atoi(tokens[x]);
-			x++;
-		}
-		free_split(tokens);
-		y++;
-	}
-	return (points);
-}
-
-int main(int argc, char **argv)
-{
-	int	fd;
-	char	*gnl;
-
-	fd = open(argv[1], O_RDONLY);
-	if (argc != 2)
-	{
-		write(2, "I need only one file!\n", 22);
-		return(1);
-	}
-	
-	gnl = get_next_line(fd);
-	while (gnl != NULL)
-	{
-		char **split = ft_split(gnl, ' ');
-		free(gnl);
-		gnl = get_next_line(fd);
-	}
-	if (gnl)
-		free(gnl);
-	fill_points(split);
-	close (fd);
-	return (0);
-}
-
-void	parse(char *file, t_view *view)
-{
-	int	fd;
-	char	
-
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		exit(1);
-	
 }
 
 int	main(int argc, char **argv)

@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   8-error.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brmaria- <brmaria-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/10 14:35:07 by brmaria-          #+#    #+#             */
-/*   Updated: 2025/07/28 11:08:48 by brmaria-         ###   ########.fr       */
+/*   Created: 2025/07/28 12:09:16 by brmaria-          #+#    #+#             */
+/*   Updated: 2025/07/28 12:10:03 by brmaria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "fdf.h"
 
-# include <fcntl.h>
-# include "minilibx-linux/mlx.h"
-#include <X11/keysym.h>
-#include <stddef.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-
-typedef struct s_point {
-	int x;
-	int y;
-	int z;
-}	t_point;
-
-typedef struct s_view {
-	t_point	**map;
-	void	*mlx;
-	void	*win;
-	int		width;
-	int		height;
-}	t_view;
-
-#endif
+void	error_fd(t_view *view)
+{
+	
+}
