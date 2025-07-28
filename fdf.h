@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmaria- <brmaria-@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: brmaria- <brmaria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:35:07 by brmaria-          #+#    #+#             */
-/*   Updated: 2025/07/21 17:39:54 by brmaria-         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:47:05 by brmaria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,21 @@
 #include <stdio.h>
 
 typedef struct s_point {
-	int	**map;
 	int x;
 	int y;
 	int z;
 }	t_point;
 
-typedef struct s_vars {
+typedef struct s_map {
+	t_point **points;
+	int width;
+	int height;
+}	t_map;
+
+typedef struct s_view {
 	void	*mlx;
 	void	*win;
-}	t_vars;
+	t_map	*map;
+}	t_view;
 
 #endif

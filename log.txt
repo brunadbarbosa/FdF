@@ -6,7 +6,7 @@
 /*   By: brmaria- <brmaria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:29:54 by brmaria-          #+#    #+#             */
-/*   Updated: 2025/07/24 15:19:46 by brmaria-         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:07:49 by brmaria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ t_point **fill_points(char **lines, int height, int width)
 		}
 		tokens = ft_split(lines[y], ' ');
 		if (!tokens)
-			return (NULL);
+			return (NULL); // poderíamos liberar memória aqui também, se quiser ser hardcore
+
 		x = 0;
 		while (x < width)
 		{
@@ -74,7 +75,6 @@ int main(int argc, char **argv)
 		write(2, "I need only one file!\n", 22);
 		return(1);
 	}
-	
 	gnl = get_next_line(fd);
 	while (gnl != NULL)
 	{
@@ -88,38 +88,72 @@ int main(int argc, char **argv)
 	close (fd);
 	return (0);
 }
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   1-screen.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brmaria- <brmaria-@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/21 13:18:00 by brmaria-          #+#    #+#             */
+/*   Updated: 2025/07/21 13:18:13 by brmaria-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	parse(char *file, t_view *view)
+#include "fdf.h"
+
+int	handle_keypress(int keycode, t_vars *vars)
 {
-	int	fd;
-	char	
-
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		exit(1);
-	
-}
-
-int	main(int argc, char **argv)
-{
-	t_view	*view;
-
-	if (argc != 2)
+	if (keycode == 65307)
 	{
-		write(1, "Usage: ./fdf <file.fdf>\n", 24);
-		return (1);
+		mlx_destroy_window(vars->mlx, vars->win);
+		exit(0);
 	}
-	view = malloc(sizeof(t_view));
-	parse(argv[1], view);
-	init_view(view);
-	draw_map(view);
-	mlx_put_image_to_window(view->mlx, view->win, view->img, 0, 0);
-	print_commands(view);
-	mlx_mouse_hook(view->win, mouse_hook, view);
-	mlx_key_hook(view->win, keyboard, view);
-	mlx_hook(view->win, 17, 0, win_close, view);
-	mlx_loop(view->mlx);
-	free_map(view);
-	free(view);
+	return (0);
 }
 
+int	handle_close(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	exit(0);
+	return (0);
+}
+
+void draw_horizontal_line(void *mlx, void *win, int y)
+{
+	int x;
+
+	x = 0;
+	while (x < 800)
+	{
+		mlx_pixel_put(mlx, win, x, y, 0xFF0000);
+		x++;
+	}
+}
+
+void draw_diagonal_line(void *mlx, void *win)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (x < 800 && y < 600)
+	{
+		mlx_pixel_put(mlx, win, x, y, 0x00FF00);
+		x++;
+		y++;
+	}
+}
+
+void draw_vertical_line(void *mlx, void *win, int x)
+{
+	int y;
+
+	y = 0;
+	while (y < 800)
+	{
+		mlx_pixel_put(mlx, win, x, y, 0xFF0000);
+		y++;
+	}
+}
