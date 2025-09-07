@@ -6,7 +6,7 @@
 #    By: brmaria- <brmaria-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/09 19:55:16 by brmaria-          #+#    #+#              #
-#    Updated: 2025/08/06 12:08:35 by brmaria-         ###   ########.fr        #
+#    Updated: 2025/09/07 13:30:58 by brmaria-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,11 @@ MLX_FLAGS	= -Lminilibx-linux -lmlx_Linux -lX11 -lXext
 # basic and additional files:
 SRC =	0-main.c\
 		1-parsing.c\
-		1-screen.c\
-		5-rotate.c
+		2-screen.c\
+		3-drawImage.c\
+		4-commands.c\
+		5-rotate.c\
+		6-error.c
 	
 OBJ = $(SRC:.c=.o)
 
