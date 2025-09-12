@@ -6,7 +6,7 @@
 /*   By: brmaria- <brmaria-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 13:18:00 by brmaria-          #+#    #+#             */
-/*   Updated: 2025/09/07 13:47:26 by brmaria-         ###   ########.fr       */
+/*   Updated: 2025/09/10 12:22:50 by brmaria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ void	draw_map(t_view *view)
 	t_point	a;
 	t_point	b;
 
-	y = 0;
+	y = -1;
 	while (++y < view->height)
 	{
-		x = 0;
+		x = -1;
 		while (++x < view->width)
 		{
 			a = get_projected_point(view->map[y][x], view);
